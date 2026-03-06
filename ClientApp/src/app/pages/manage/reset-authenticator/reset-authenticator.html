@@ -1,0 +1,20 @@
+<div class="max-w-xl">
+ <div class="rounded-xl border border-amber/20 bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-3 text-lg font-semibold text-foreground">Reset Authenticator Key</h2>
+ <div class="mb-4 space-y-2 rounded-lg border border-amber/20 bg-amber/10 px-4 py-3 text-sm text-amber
+">
+ <p><strong>If you reset your authenticator key, your authenticator app will not work until you reconfigure it.</strong></p>
+ <p>This process disables 2FA until you verify your authenticator app. If you do not complete configuration you may lose access to your account.</p>
+ </div>
+ @if (errorMessage()) {
+ <div class="mb-4 rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button (click)="reset()"
+ class="rounded-lg bg-amber px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-amber/80 focus:outline-none focus:ring-2 focus:ring-amber/50 focus:ring-offset-2
+ transition-colors">
+ Reset Authenticator Key
+ </button>
+ </div>
+</div>

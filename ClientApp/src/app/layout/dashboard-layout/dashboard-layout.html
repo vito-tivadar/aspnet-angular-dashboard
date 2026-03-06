@@ -1,0 +1,58 @@
+<!-- Full-page layout: 100vh, no page-level scroll -->
+<div class="h-screen flex flex-col bg-bg0 text-foreground overflow-hidden">
+  <!-- Background orbs -->
+  <div class="absolute inset-0 pointer-events-none app-bg-gradient">
+  </div>
+
+  <!-- Navbar -->
+  <app-navbar class="relative z-30 flex-shrink-0" (menuToggle)="toggleSidebar()" />
+
+  <!-- ── Mobile sidebar overlay ────────────────────────────────── -->
+  @if (sidebarOpen()) {
+    <div class="fixed inset-0 z-40 bg-black/60 md:hidden" (click)="toggleSidebar()"></div>
+    <div class="fixed inset-y-0 left-0 z-50 w-72 md:hidden p-2">
+      <app-sidebar
+        [open]="true"
+        [navGroups]="navGroups"
+        [isDark]="isDark()"
+        [userName]="userName()"
+        [userEmail]="userEmail()"
+        (closeSidebar)="toggleSidebar()"
+        (logoutClicked)="logout()"
+        (themeToggle)="toggleTheme()"
+        (profileClicked)="goToAccount()"
+      />
+    </div>
+  }
+
+  <!-- Content area: sidebar + main, fills remaining height -->
+  <div class="relative z-10 flex flex-1 min-h-0 mx-auto max-w-[1320px] w-full px-4 pb-4 gap-5">
+
+    <!-- ── Sidebar (desktop) ──────────────────────────────────── -->
+    <app-sidebar
+      class="hidden md:block md:w-60 flex-shrink-0"
+      [open]="true"
+      [navGroups]="navGroups"
+      [isDark]="isDark()"
+      [userName]="userName()"
+      [userEmail]="userEmail()"
+      (closeSidebar)="toggleSidebar()"
+      (logoutClicked)="logout()"
+      (themeToggle)="toggleTheme()"
+      (profileClicked)="goToAccount()"
+    />
+
+    <!-- ── Main area (scrollable) ─────────────────────────────── -->
+    <main class="flex-1 min-w-0 overflow-y-auto pe-2">
+      <!-- Desktop topbar -->
+      <app-topbar
+        class="hidden md:block mb-5"
+        [pageTitle]="pageTitle()"
+      />
+
+      <!-- Page content -->
+      <router-outlet />
+    </main>
+
+  </div>
+</div>

@@ -1,0 +1,77 @@
+# =========================
+# .NET / ASP.NET Core
+# =========================
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+project.lock.json
+*.nuget.props
+*.nuget.targets
+
+# User-specific files
+*.rsuser
+*.csproj.user
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+
+# =========================
+# Node / Angular
+# =========================
+node_modules/
+dist/
+tmp/
+out-tsc/
+.angular/
+npm-debug.log
+yarn-error.log
+
+# =========================
+# Environment & Secrets
+# =========================
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+appsettings.*.local.json
+secrets.json
+
+# =========================
+# IDE / Editor
+# =========================
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Misc
+# =========================
+*.log
+coverage/
+.sass-cache/
+__screenshots__/

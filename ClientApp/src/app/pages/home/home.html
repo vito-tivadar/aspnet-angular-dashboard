@@ -1,0 +1,53 @@
+<div class="space-y-6">
+  <!-- Welcome banner -->
+  <div class="rounded-xl border border-orange/20 bg-orange/10 px-6 py-5">
+    <h2 class="text-lg font-semibold text-orange">
+      <span class="inline-flex items-center gap-2"
+        ><i class="ti ti-heart" style="font-size: 22px"></i> Welcome to Portfolio v2</span
+      >
+    </h2>
+    <p class="mt-1 text-sm text-orange2">
+      You're logged in and ready to go. Use the sidebar to navigate between sections.
+    </p>
+  </div>
+
+  <!-- Quick links grid -->
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <a
+      routerLink="/dashboard"
+      class="flex items-center gap-4 rounded-xl border border-border bg-surface-hover p-5 shadow-sm transition-colors hover:border-orange/30 hover:bg-orange/10"
+    >
+      <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/15 text-orange"
+        ><i class="ti ti-chart-bar" style="font-size: 28px"></i
+      ></span>
+      <div>
+        <p class="font-medium text-foreground">Dashboard</p>
+        <p class="text-xs text-muted">Stats, charts, and data</p>
+      </div>
+    </a>
+    <a
+      routerLink="/manage/profile"
+      class="flex items-center gap-4 rounded-xl border border-border bg-surface-hover p-5 shadow-sm transition-colors hover:border-orange/30 hover:bg-orange/10"
+    >
+      <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/15 text-orange"
+        ><i class="ti ti-user" style="font-size: 28px"></i
+      ></span>
+      <div>
+        <p class="font-medium text-foreground">Profile</p>
+        <p class="text-xs text-muted">Manage your details</p>
+      </div>
+    </a>
+    <a
+      routerLink="/privacy"
+      class="flex items-center gap-4 rounded-xl border border-border bg-surface-hover p-5 shadow-sm transition-colors hover:border-orange/30 hover:bg-orange/10"
+    >
+      <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/15 text-orange"
+        ><i class="ti ti-lock" style="font-size: 28px"></i
+      ></span>
+      <div>
+        <p class="font-medium text-foreground">Privacy Policy</p>
+        <p class="text-xs text-muted">Review our policy</p>
+      </div>
+    </a>
+  </div>
+</div>

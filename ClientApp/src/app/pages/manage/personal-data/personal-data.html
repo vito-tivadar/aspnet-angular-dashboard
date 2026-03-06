@@ -1,0 +1,27 @@
+<div class="max-w-xl space-y-5">
+  <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+    <h2 class="mb-3 text-lg font-semibold text-foreground">Personal Data</h2>
+    <p class="mb-4 text-sm text-muted">
+      Your account contains personal data that you have given us. This page allows you to download
+      or delete that data.
+    </p>
+    <div class="rounded-lg border border-amber/20 bg-amber/10 px-4 py-3 text-sm text-amber">
+      ⚠️ <strong>Deleting this data will permanently remove your account</strong> and this cannot be
+      recovered.
+    </div>
+    <div class="mt-5 flex flex-wrap gap-3">
+      <a
+        routerLink="/manage/download-personal-data"
+        class="rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground-secondary hover:bg-surface-hover transition-colors"
+      >
+        <i class="ti ti-download"></i> Download my data
+      </a>
+      <a
+        routerLink="/manage/delete-personal-data"
+        class="rounded-lg border border-red/20 px-4 py-2 text-sm font-medium text-red hover:bg-red/10 transition-colors"
+      >
+        🗑️ Delete my account
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<nav class="mx-auto max-w-[1320px] w-full flex items-center justify-between px-4 h-14">
+  <!-- Left: logo -->
+  <div class="flex items-center">
+    <img src="/logo/vt_light.svg" alt="Logo" class="h-6 w-auto" />
+  </div>
+
+  <div class="hidden md:inline-flex items-stretch">
+    <label
+      for="search"
+      class="flex rounded-s-lg border border-border border-e-0 bg-surface-hover px-3 items-center py-1 text-sm text-foreground"
+    >
+      <i class="ti ti-search text-foreground opacity-70 text-[18px]"></i>
+    </label>
+
+    <input
+      type="text"
+      id="search"
+      placeholder="Search..."
+      class="rounded-e-lg border border-border border-s-0 bg-surface-hover px-3 items-center py-1 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-orange"
+    />
+  </div>
+
+  <!-- Right: hamburger menu (mobile only) -->
+  <button
+    (click)="menuToggle.emit()"
+    aria-label="Toggle menu"
+    class="h-10 w-10 rounded-xl bg-surface-hover border border-border hover:bg-surface-active transition grid place-items-center md:hidden"
+  >
+    <i class="ti ti-menu-2 text-foreground" style="font-size: 18px"></i>
+  </button>
+</nav>

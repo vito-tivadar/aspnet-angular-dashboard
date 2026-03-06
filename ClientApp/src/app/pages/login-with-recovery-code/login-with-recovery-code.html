@@ -1,0 +1,37 @@
+<div class="flex min-h-screen items-center justify-center bg-bg0 px-4">
+ <div class="w-full max-w-md">
+ <div class="mb-8 text-center">
+ <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-orange text-white"><i class="ti ti-key" style="font-size: 24px"></i></span>
+ <h1 class="mt-4 text-2xl font-bold text-foreground">Recovery Code</h1>
+ <p class="mt-1 text-sm text-muted">Enter one of your recovery codes to log in</p>
+ </div>
+ <div class="rounded-2xl border border-border bg-surface-hover p-8 shadow-xl">
+ <form (ngSubmit)="onSubmit()" class="space-y-5">
+ <div>
+ <label for="recoveryCode" class="block text-sm font-medium text-foreground-secondary">Recovery Code</label>
+ <input id="recoveryCode" type="text" [ngModel]="recoveryCode()" (ngModelChange)="recoveryCode.set($event)" name="recoveryCode" required
+ class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground
+  font-mono focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50
+ " />
+  </div>
+  <div class="flex items-center gap-2">
+  <input id="rememberMe" type="checkbox" [ngModel]="rememberMe()" (ngModelChange)="rememberMe.set($event)" name="rememberMe" class="h-4 w-4 rounded border-border bg-surface-hover text-orange focus:ring-orange/50" />
+  <label for="rememberMe" class="text-sm text-foreground-secondary">Remember me for 30 days</label>
+  </div>
+  @if (errorMessage()) {
+ <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button type="submit"
+ class="w-full rounded-lg bg-orange px-4 py-2.5 text-sm font-semibold text-white
+ hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2
+ transition-colors">
+ Log in
+ </button>
+ </form>
+ <p class="mt-6 text-center text-sm">
+ <a routerLink="/login" class="text-muted hover:text-orange">← Back to Login</a>
+ </p>
+ </div>
+ </div>
+</div>

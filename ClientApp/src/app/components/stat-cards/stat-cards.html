@@ -1,0 +1,19 @@
+<section class="rounded-2xl border border-border backdrop-blur-xl p-4 mb-5"
+         style="background: var(--t-sidebar-bg)">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    @for (card of cards(); track card.title) {
+      <div class="rounded-2xl bg-surface-hover border border-border p-4">
+        <div class="text-xs text-muted">{{ card.title }}</div>
+        <div class="mt-2 flex items-end justify-between gap-3">
+          <div class="text-3xl font-semibold text-foreground">{{ card.value }}</div>
+          <span
+            class="text-xs"
+            [class]="card.positive ? 'text-green' : 'text-red'"
+          >
+            {{ card.change }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+</section>

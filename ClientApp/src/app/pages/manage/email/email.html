@@ -1,0 +1,42 @@
+<div class="max-w-xl space-y-5">
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-4 text-lg font-semibold text-foreground">Current Email</h2>
+ <div class="flex items-center gap-3">
+ <span class="text-sm font-medium text-foreground">{{ currentEmail() }}</span>
+ @if (isEmailConfirmed()) {
+ <span class="rounded-full bg-green/15 px-2.5 py-0.5 text-xs font-medium text-green
+">✓ Confirmed</span>
+ } @else {
+ <span class="rounded-full bg-red/15 px-2.5 py-0.5 text-xs font-medium text-red
+">✗ Not confirmed</span>
+ }
+ </div>
+ </div>
+
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-4 text-lg font-semibold text-foreground">Change Email</h2>
+ <form (ngSubmit)="onSubmit()" class="space-y-4">
+ <div>
+ <label for="newEmail" class="block text-sm font-medium text-foreground-secondary">New Email</label>
+ <input id="newEmail" type="email" [ngModel]="newEmail()" (ngModelChange)="newEmail.set($event)" name="newEmail" required
+ class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground
+ focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50
+" />
+ </div>
+ @if (message()) {
+ <div class="rounded-lg border border-green/20 bg-green/10 px-4 py-3 text-sm text-green
+">{{ message() }}</div>
+ }
+ @if (errorMessage()) {
+ <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button type="submit"
+ class="rounded-lg bg-orange px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2
+ transition-colors">
+ Change Email
+ </button>
+ </form>
+ </div>
+</div>

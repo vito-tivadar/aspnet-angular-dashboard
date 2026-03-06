@@ -1,0 +1,144 @@
+<!-- Auth card layout -->
+<div class="flex min-h-screen items-center justify-center bg-bg0 px-4">
+  <div class="w-full max-w-md">
+    <!-- Brand -->
+    <div class="mb-8 text-center">
+      @if (requiresTwoFactor()) {
+        <h1 class="mt-4 text-2xl font-bold text-foreground">Two-Factor Authentication</h1>
+        <p class="mt-1 text-sm text-muted">Enter the code from your authenticator app</p>
+      } @else {
+        <h1 class="mt-4 text-2xl font-bold text-foreground">Welcome back</h1>
+        <p class="mt-1 text-sm text-muted">Sign in to your account</p>
+      }
+    </div>
+
+    <!-- Card -->
+    <div class="rounded-2xl border border-border bg-surface-hover p-8 shadow-xl">
+      @if (requiresTwoFactor()) {
+        <!-- 2FA Step -->
+        <form (ngSubmit)="onSubmit2fa()" class="space-y-5">
+          <div>
+            <label for="twoFactorCode" class="block text-sm font-medium text-foreground-secondary"
+              >Authenticator Code</label
+            >
+            <input
+              id="twoFactorCode"
+              type="text"
+              [ngModel]="twoFactorCode()"
+              (ngModelChange)="twoFactorCode.set($event)"
+              name="twoFactorCode"
+              required
+              autocomplete="one-time-code"
+              class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50"
+            />
+          </div>
+          <label for="rememberMachine" class="flex items-center gap-2 text-sm text-muted cursor-pointer">
+            <input
+              id="rememberMachine"
+              type="checkbox"
+              [ngModel]="rememberMachine()"
+              (ngModelChange)="rememberMachine.set($event)"
+              name="rememberMachine"
+              class="h-4 w-4 rounded border-border text-orange focus:ring-orange/50"
+            />
+            Remember this machine
+          </label>
+          @if (errorMessage()) {
+            <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red">
+              {{ errorMessage() }}
+            </div>
+          }
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-orange px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2 transition-colors"
+          >
+            Log in
+          </button>
+        </form>
+        <p class="mt-6 text-center text-sm text-muted">
+          Don't have access to your authenticator?
+          <a routerLink="/login-with-recovery-code" class="font-medium text-orange hover:text-orange2"
+            >Use a recovery code</a
+          >
+        </p>
+      } @else {
+        <!-- Login Step -->
+        <form (ngSubmit)="onSubmit()" class="space-y-5">
+          <div>
+            <label for="email" class="block text-sm font-medium text-foreground-secondary"
+              >Email</label
+            >
+            <input
+              id="email"
+              type="email"
+              [ngModel]="email()"
+              (ngModelChange)="email.set($event)"
+              name="email"
+              required
+              class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground placeholder-foreground-weak focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50"
+            />
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-foreground-secondary"
+              >Password</label
+            >
+            <input
+              id="password"
+              type="password"
+              [ngModel]="password()"
+              (ngModelChange)="password.set($event)"
+              name="password"
+              required
+              class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground placeholder-foreground-weak focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50"
+            />
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input
+              id="rememberMe"
+              type="checkbox"
+              [ngModel]="rememberMe()"
+              (ngModelChange)="rememberMe.set($event)"
+              name="rememberMe"
+              class="h-4 w-4 rounded border-border bg-surface-hover text-orange focus:ring-orange/50"
+            />
+            <label for="rememberMe" class="text-sm text-foreground-secondary"
+              >Remember me for 30 days</label
+            >
+          </div>
+
+          @if (errorMessage()) {
+            <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red">
+              {{ errorMessage() }}
+            </div>
+          }
+
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-orange px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2 transition-colors"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <div class="mt-6 space-y-2 text-center text-sm">
+          <p class="text-muted">
+            Don't have an account?
+            <a routerLink="/register" class="font-medium text-orange hover:text-orange2">Register</a>
+          </p>
+          <p>
+            <a routerLink="/forgot-password" class="text-muted hover:text-orange"
+              >Forgot your password?</a
+            >
+          </p>
+          <p>
+            <a routerLink="/resend-email-confirmation" class="text-muted hover:text-orange"
+              >Resend email confirmation</a
+            >
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

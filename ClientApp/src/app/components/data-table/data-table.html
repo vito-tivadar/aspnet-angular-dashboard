@@ -1,0 +1,44 @@
+<div
+  class="overflow-hidden rounded-2xl border border-border backdrop-blur-xl"
+  style="background: var(--t-sidebar-bg)"
+>
+  <!-- Table header -->
+  <div class="flex items-center justify-between border-b border-border px-4 py-4">
+    <div>
+      <h2 class="text-sm font-semibold text-foreground">{{ title() }}</h2>
+      <span class="text-xs text-muted">{{ rows().length }} entries</span>
+    </div>
+  </div>
+
+  <!-- Scrollable table wrapper -->
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border text-left">
+          <th class="px-4 py-3 text-xs font-medium text-muted">#</th>
+          <th class="px-4 py-3 text-xs font-medium text-muted">Name</th>
+          <th class="px-4 py-3 text-xs font-medium text-muted">Email</th>
+          <th class="px-4 py-3 text-xs font-medium text-muted">Role</th>
+          <th class="px-4 py-3 text-xs font-medium text-muted">Status</th>
+          <th class="px-4 py-3 text-xs font-medium text-muted">Joined</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border">
+        @for (row of rows(); track row.id) {
+          <tr class="transition-colors hover:bg-surface-hover">
+            <td class="px-4 py-3 text-xs text-muted">{{ row.id }}</td>
+            <td class="px-4 py-3 text-sm text-foreground">{{ row.name }}</td>
+            <td class="px-4 py-3 text-xs text-muted">{{ row.email }}</td>
+            <td class="px-4 py-3 text-xs text-muted">{{ row.role }}</td>
+            <td class="px-4 py-3">
+              <span class="rounded-full px-2.5 py-0.5 text-xs font-medium" [class]="statusClass(row.status)">
+                {{ row.status }}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-xs text-muted">{{ row.joined }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

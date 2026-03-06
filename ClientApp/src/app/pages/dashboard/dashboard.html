@@ -1,0 +1,20 @@
+<!-- Dashboard page content — layout shell is provided by DashboardLayoutComponent -->
+<div class="space-y-5">
+
+  <!-- Stat cards row -->
+  <app-stat-cards [cards]="statCards" />
+
+  <!-- Charts row -->
+  <div class="grid grid-cols-12 gap-5">
+    <div class="col-span-12 lg:col-span-8">
+      <app-chart-placeholder [config]="revenueChartConfig" />
+    </div>
+    <div class="col-span-12 lg:col-span-4">
+      <app-chart-placeholder [config]="usersChartConfig" />
+    </div>
+  </div>
+
+  <!-- Data table -->
+  <app-data-table title="Recent Users" [rows]="tableRows" />
+
+</div>

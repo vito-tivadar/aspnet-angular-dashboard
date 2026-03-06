@@ -1,0 +1,21 @@
+<div class="max-w-xl">
+ <div class="rounded-xl border border-amber/20 bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-3 text-lg font-semibold text-foreground">Disable Two-Factor Authentication</h2>
+ <div class="mb-4 rounded-lg border border-amber/20 bg-amber/10 px-4 py-3 text-sm text-amber
+">
+ <p><strong>This action only disables 2FA.</strong> It does not reset the keys used in authenticator apps.</p>
+ <p class="mt-1">If you wish to change the key, <a routerLink="/manage/reset-authenticator"
+ class="font-medium underline hover:no-underline">reset your authenticator keys</a> instead.</p>
+ </div>
+ @if (errorMessage()) {
+ <div class="mb-4 rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button (click)="disable()"
+ class="rounded-lg bg-red px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-red/80 focus:outline-none focus:ring-2 focus:ring-red/50 focus:ring-offset-2
+ transition-colors">
+ Disable 2FA
+ </button>
+ </div>
+</div>

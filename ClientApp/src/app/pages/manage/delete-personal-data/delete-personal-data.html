@@ -1,0 +1,33 @@
+<div class="max-w-xl">
+ <div class="rounded-xl border border-red/20 bg-surface-hover p-6 shadow-sm">
+ <div class="mb-4 flex items-center gap-3">
+ <div class="flex h-10 w-10 items-center justify-center rounded-full bg-red/15 text-xl">⚠️</div>
+ <h2 class="text-lg font-semibold text-red">Delete Account</h2>
+ </div>
+ <div class="mb-5 rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">
+ <strong>This action is permanent and cannot be undone.</strong> All of your data will be permanently deleted.
+ </div>
+ <form (ngSubmit)="onSubmit()" class="space-y-4">
+ <div>
+ <label for="password" class="block text-sm font-medium text-foreground-secondary">
+ Confirm your password to proceed
+ </label>
+ <input id="password" type="password" [ngModel]="password()" (ngModelChange)="password.set($event)" name="password" required
+ class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground
+ focus:border-red/50 focus:outline-none focus:ring-1 focus:ring-red/50
+" />
+ </div>
+ @if (errorMessage()) {
+ <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button type="submit"
+ class="rounded-lg bg-red px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-red/80 focus:outline-none focus:ring-2 focus:ring-red/50 focus:ring-offset-2
+ transition-colors">
+ Delete data and close my account
+ </button>
+ </form>
+ </div>
+</div>

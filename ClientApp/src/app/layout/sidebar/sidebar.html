@@ -1,0 +1,114 @@
+<aside
+  class="rounded-2xl border border-border shadow-md backdrop-blur-xl flex flex-col h-full"
+  style="background: var(--t-sidebar-bg)"
+  [class.hidden]="!open()"
+>
+  <div class="py-4 px-2 overflow-y-auto flex-1">
+    <!-- Navigation links (grouped) -->
+    <nav class="space-y-4">
+      @for (group of navGroups(); track group.label) {
+        <div>
+          <p class="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-foreground-weak">
+            {{ group.label }}
+          </p>
+          <ul class="space-y-0.5">
+            @for (item of group.items; track item.route) {
+              <li>
+                <a
+                  [routerLink]="item.route"
+                  routerLinkActive="bg-surface-active border border-border"
+                  #rla="routerLinkActive"
+                  [routerLinkActiveOptions]="{ exact: false }"
+                  class="flex items-center gap-3 rounded-xl px-3 py-2
+                         text-sm text-muted
+                         transition-colors hover:bg-surface-hover"
+                >
+                  <i
+                    [class]="item.icon"
+                    [style.font-size]="'16px'"
+                    [style.color]="rla.isActive ? '#FF5A1F' : 'var(--t-foreground-weak)'"
+                  ></i>
+                  <span [class]="rla.isActive ? 'text-foreground' : ''">{{ item.label }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </nav>
+  </div>
+
+  <!-- Bottom: logout + theme + profile -->
+  <div class="border-t border-border py-4 px-2">
+
+    <div class="relative">
+      @if (profileDropupOpen()) {
+        <div class="absolute bottom-full left-0 mb-2 w-full rounded-xl border border-border bg-panel p-1 shadow-md z-50">
+          <a routerLink="/manage/account"
+            (click)="profileDropupOpen.set(false)"
+            class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted hover:bg-surface-hover transition-colors">
+            <i class="ti ti-settings text-foreground-weak" style="font-size: 16px"></i>
+            Account settings
+          </a>
+        </div>
+      }
+
+      <button
+        (click)="toggleProfileDropup()"
+        class="flex w-full items-center gap-3 rounded-xl p-2 mb-2
+               hover:bg-surface-hover transition-colors"
+      >
+        <div
+          class="h-8 w-8 rounded-full border border-border grid place-items-center flex-shrink-0"
+          style="background: linear-gradient(135deg, rgba(255,90,31,.40), rgba(255,255,255,.05))"
+        >
+          <span class="text-xs font-semibold text-foreground">
+            {{ (userName() || userEmail())?.[0]?.toUpperCase() || 'U' }}
+          </span>
+        </div>
+        <div class="text-left min-w-0">
+          @if (userName()) {
+            <p class="text-sm font-medium text-foreground truncate">{{ userName() }}</p>
+          }
+          <p class="text-xs text-muted truncate">{{ userEmail() }}</p>
+        </div>
+      </button>
+    </div>
+
+    <!-- Logout + theme toggle row -->
+    <div class="flex items-center gap-2">
+      <button
+        (click)="logoutClicked.emit()"
+        class="flex-1 items-center gap-2 rounded-xl px-3 py-2 text-left text-sm text-orange
+               hover:bg-surface-hover transition-colors"
+      >
+        <i class="ti ti-logout" style="font-size: 16px"></i>
+        Logout
+      </button>
+
+      <button
+        (click)="themeToggle.emit()"
+        class="ml-auto h-8 w-8 rounded-lg bg-surface-hover border border-border
+               hover:bg-surface-active transition grid place-items-center"
+        [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        @if (isDark()) {
+          <i class="ti ti-sun text-yellow-600" style="font-size: 16px"></i>
+        } @else {
+          <i class="ti ti-moon text-blue-800" style="font-size: 16px"></i>
+        }
+      </button>
+    </div>
+
+    <!-- Profile info -->
+
+
+    <!-- Close menu (mobile) -->
+    <button
+      (click)="closeSidebar.emit()"
+      class="absolute top-2 right-2 p-1 rounded-lg hover:bg-surface-hover transition-colors md:hidden"
+    >
+      <i class="ti ti-x text-foreground-weak" style="font-size: 16px"></i>
+    </button>
+  </div>
+</aside>

@@ -1,0 +1,49 @@
+<div class="max-w-xl space-y-5">
+ @if (errorMessage()) {
+ <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ @if (message()) {
+ <div class="rounded-lg border border-green/20 bg-green/10 px-4 py-3 text-sm text-green
+">{{ message() }}</div>
+ }
+
+ @if (info(); as infoData) {
+ @if (infoData.currentLogins.length > 0) {
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-4 text-lg font-semibold text-foreground">Connected Accounts</h2>
+ <ul class="divide-y divide-border">
+ @for (login of infoData.currentLogins; track login.providerKey) {
+ <li class="flex items-center justify-between py-3">
+ <span class="text-sm font-medium text-foreground">{{ login.providerDisplayName }}</span>
+ @if (infoData.showRemoveButton) {
+ <button (click)="remove(login.loginProvider, login.providerKey)"
+ class="rounded-lg border border-red/20 px-3 py-1 text-xs font-medium text-red
+ hover:bg-red/10 transition-colors">
+ Remove
+ </button>
+ }
+ </li>
+ }
+ </ul>
+ </div>
+ }
+
+ @if (infoData.otherLogins.length > 0) {
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-4 text-lg font-semibold text-foreground">Add Another Service</h2>
+ <div class="space-y-2">
+ @for (login of infoData.otherLogins; track login.name) {
+ <div class="text-sm text-muted">{{ login.displayName }}</div>
+ }
+ </div>
+ </div>
+ }
+ }
+
+ <a routerLink="/manage/profile"
+ class="inline-flex items-center gap-1 text-sm font-medium text-orange hover:text-orange2
+">
+ ← Back to Profile
+ </a>
+</div>

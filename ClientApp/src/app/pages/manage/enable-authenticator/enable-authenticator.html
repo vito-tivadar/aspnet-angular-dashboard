@@ -1,0 +1,37 @@
+<div class="max-w-xl">
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-4 text-lg font-semibold text-foreground">Configure Authenticator App</h2>
+ <ol class="mb-5 space-y-2 text-sm text-muted list-decimal list-inside">
+ <li>Download a two-factor authenticator app like <strong>Microsoft Authenticator</strong> or <strong>Google Authenticator</strong>.</li>
+ <li>Scan the QR Code or enter this key into your app:
+ <code class="ml-2 rounded bg-bg0 px-2 py-0.5 font-mono text-foreground
+">{{ sharedKey() }}</code>
+ </li>
+ <li>Enter the verification code from your app below.</li>
+ </ol>
+ @if (qrCodeDataUrl()) {
+   <div class="mb-5 flex justify-center">
+     <img [src]="qrCodeDataUrl()" alt="QR Code for authenticator app" class="rounded-lg" width="200" height="200" />
+   </div>
+ }
+ <form (ngSubmit)="onSubmit()" class="space-y-4">
+ <div>
+ <label for="code" class="block text-sm font-medium text-foreground-secondary">Verification Code</label>
+ <input id="code" type="text" [ngModel]="code()" (ngModelChange)="code.set($event)" name="code" required
+ class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground
+ font-mono focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50
+" />
+ </div>
+ @if (errorMessage()) {
+ <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button type="submit"
+ class="rounded-lg bg-orange px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2
+ transition-colors">
+ Verify
+ </button>
+ </form>
+ </div>
+</div>

@@ -1,0 +1,27 @@
+<div
+  class="overflow-hidden rounded-2xl border border-border backdrop-blur-xl shadow-md"
+  style="background: var(--t-sidebar-bg)"
+>
+  <!-- Header -->
+  <div class="p-4 flex items-center justify-between ">
+    <div>
+      <h2 class="text-sm font-semibold text-foreground">{{ config().title }}</h2>
+      @if (config().subtitle) {
+        <p class="mt-0.5 text-xs text-muted">{{ config().subtitle }}</p>
+      }
+    </div>
+  </div>
+
+  <!-- Placeholder area — replace with a real chart -->
+  <div
+    class="mx-4 mb-4 flex flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-surface-hover text-muted"
+    style="box-shadow: var(--shadow-insetGlow)"
+    [style.height]="config().height ?? '220px'"
+  >
+    <!-- Simple bar-chart SVG icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 opacity-30" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M3 3h2v18H3zm4 4h2v14H7zm4-2h2v16h-2zm4 4h2v12h-2zm4-6h2v18h-2z"/>
+    </svg>
+    <p class="text-sm font-medium">Chart Placeholder</p>
+  </div>
+</div>

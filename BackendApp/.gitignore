@@ -1,0 +1,8 @@
+.vs/
+[Bb]in/
+[Oo]bj/
+ClientApp/node_modules/
+ClientApp/dist/
+ClientApp/.angular/
+
+.env

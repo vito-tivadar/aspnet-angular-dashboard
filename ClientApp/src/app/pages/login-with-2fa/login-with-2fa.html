@@ -1,0 +1,57 @@
+<div class="flex min-h-screen items-center justify-center bg-bg0 px-4">
+  <div class="w-full max-w-md">
+    <div class="mb-8 text-center">
+      <!-- <span
+        class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-orange text-white"
+        ><i class="ti ti-shield" style="font-size: 24px"></i
+      ></span> -->
+      <h1 class="mt-4 text-2xl font-bold text-foreground">Two-Factor Authentication</h1>
+      <p class="mt-1 text-sm text-muted">Enter the code from your authenticator app</p>
+    </div>
+    <div class="rounded-2xl border border-border bg-surface-hover p-8 shadow-xl">
+      <form (ngSubmit)="onSubmit()" class="space-y-5">
+        <div>
+          <label for="twoFactorCode" class="block text-sm font-medium text-foreground-secondary"
+            >Authenticator Code</label
+          >
+          <input
+            id="twoFactorCode"
+            type="text"
+            [ngModel]="twoFactorCode()"
+            (ngModelChange)="twoFactorCode.set($event)"
+            name="twoFactorCode"
+            required
+            class="mt-1 w-full rounded-lg border border-border bg-surface-hover px-3 py-2.5 text-sm text-foreground focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50"
+          />
+        </div>
+        <label class="flex items-center gap-2 text-sm text-muted cursor-pointer">
+          <input
+            type="checkbox"
+            [ngModel]="rememberMachine()"
+            (ngModelChange)="rememberMachine.set($event)"
+            name="rememberMachine"
+            class="h-4 w-4 rounded border-border text-orange focus:ring-orange/50"
+          />
+          Remember this machine
+        </label>
+        @if (errorMessage()) {
+          <div class="rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red">
+            {{ errorMessage() }}
+          </div>
+        }
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-orange px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2 transition-colors"
+        >
+          Log in
+        </button>
+      </form>
+      <p class="mt-6 text-center text-sm text-muted">
+        Don't have access to your authenticator?
+        <a routerLink="/login-with-recovery-code" class="font-medium text-orange hover:text-orange2"
+          >Use a recovery code</a
+        >
+      </p>
+    </div>
+  </div>
+</div>

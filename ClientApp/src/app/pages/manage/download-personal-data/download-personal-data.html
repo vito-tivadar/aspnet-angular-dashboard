@@ -1,0 +1,25 @@
+<div class="max-w-xl">
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-3 text-lg font-semibold text-foreground">Download Personal Data</h2>
+ <p class="mb-5 text-sm text-muted">
+ Click the button below to download all personal data associated with your account.
+ </p>
+ @if (errorMessage()) {
+ <div class="mb-4 rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <div class="flex flex-wrap gap-3">
+ <button (click)="download()"
+ class="rounded-lg bg-orange px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2
+ transition-colors">
+  <i class="ti ti-download"></i> Download
+ </button>
+ <a routerLink="/manage/personal-data"
+ class="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground-secondary
+ hover:bg-surface-hover transition-colors">
+ Back
+ </a>
+ </div>
+ </div>
+</div>

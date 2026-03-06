@@ -1,0 +1,43 @@
+<div class="max-w-xl">
+ @if (!generated()) {
+ <div class="rounded-xl border border-border bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-3 text-lg font-semibold text-foreground">Generate Recovery Codes</h2>
+ <div class="mb-4 rounded-lg border border-amber/20 bg-amber/10 px-4 py-3 text-sm text-amber
+">
+ <p><strong>Save these codes in a safe place.</strong> If you lose your device and don't have the recovery codes you will lose access to your account.</p>
+ <p class="mt-1">Generating new codes does not change your authenticator app keys. To change the key,
+ <a routerLink="/manage/reset-authenticator" class="font-medium underline hover:no-underline">reset your authenticator</a>.
+ </p>
+ </div>
+ @if (errorMessage()) {
+ <div class="mb-4 rounded-lg border border-red/20 bg-red/10 px-4 py-3 text-sm text-red
+">{{ errorMessage() }}</div>
+ }
+ <button (click)="generate()"
+ class="rounded-lg bg-orange px-5 py-2.5 text-sm font-semibold text-white
+ hover:bg-orange2 focus:outline-none focus:ring-1 focus:ring-orange/50 focus:ring-offset-2
+ transition-colors">
+ Generate Recovery Codes
+ </button>
+ </div>
+ } @else {
+ <div class="rounded-xl border border-green/20 bg-surface-hover p-6 shadow-sm">
+ <h2 class="mb-3 text-lg font-semibold text-foreground">Your Recovery Codes</h2>
+ <div class="mb-4 rounded-lg border border-green/20 bg-green/10 px-4 py-3 text-sm text-green
+">
+ <strong>Save these codes in a safe place.</strong> If you lose your device and don't have these codes you will lose access to your account.
+ </div>
+ <div class="mb-5 grid grid-cols-2 gap-2">
+ @for (code of recoveryCodes(); track code) {
+ <code class="rounded-lg bg-bg0 px-3 py-2 text-sm font-mono text-foreground text-center
+">{{ code }}</code>
+ }
+ </div>
+ <a routerLink="/manage/two-factor-authentication"
+ class="inline-flex items-center gap-1 text-sm font-medium text-orange hover:text-orange2
+">
+ ← Back to 2FA
+ </a>
+ </div>
+ }
+</div>

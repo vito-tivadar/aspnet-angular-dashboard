@@ -1,0 +1,167 @@
+/* Import Tailwind CSS — Tailwind v4 CSS-first configuration */
+@import 'tailwindcss';
+
+/*
+ * Dark mode strategy: Tailwind's `dark` variant is activated by the `.dark`
+ * class on the <html> element, which is toggled by ThemeService.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Light theme (default) ────────────────────────────────────────────── */
+:root {
+  --t-bg0: #ffffff;
+  --t-panel: #ffffff;
+  --t-border: rgba(15, 23, 42, 0.1);
+  --t-muted: rgba(15, 23, 42, 0.55);
+  --t-foreground: #1e293b;
+  --t-foreground-secondary: rgba(15, 23, 42, 0.65);
+  --t-foreground-weak: rgba(15, 23, 42, 0.35);
+  --t-surface-hover: rgba(15, 23, 42, 0.04);
+  --t-surface-active: rgba(15, 23, 42, 0.07);
+  --t-shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.08);
+  --t-sidebar-bg: rgba(255, 255, 255, 0.8);
+  --t-orb-opacity: 0.35;
+  --t-scrollbar-track: rgba(0, 0, 0, 0.04);
+  --t-scrollbar-thumb: rgba(0, 0, 0, 0.12);
+  --t-scrollbar-thumb-hover: rgba(0, 0, 0, 0.18);
+  --t-ring-offset: #f1f5f9;
+  --t-placeholder: rgba(15, 23, 42, 0.3);
+}
+
+/* ─── Dark theme ───────────────────────────────────────────────────────── */
+.dark {
+  --t-bg0: #0b0f12;
+  --t-panel: #0f171d;
+  --t-border: rgba(255, 255, 255, 0.08);
+  --t-muted: rgba(255, 255, 255, 0.55);
+  --t-foreground: #f1f5f9;
+  --t-foreground-secondary: rgba(255, 255, 255, 0.7);
+  --t-foreground-weak: rgba(255, 255, 255, 0.35);
+  --t-surface-hover: rgba(255, 255, 255, 0.05);
+  --t-surface-active: rgba(255, 255, 255, 0.07);
+  --t-shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --t-sidebar-bg: rgba(15, 23, 29, 0.6);
+  --t-orb-opacity: 0.3;
+  --t-scrollbar-track: rgba(255, 255, 255, 0.04);
+  --t-scrollbar-thumb: rgba(255, 255, 255, 0.12);
+  --t-scrollbar-thumb-hover: rgba(255, 255, 255, 0.18);
+  --t-ring-offset: #0b0f12;
+  --t-placeholder: rgba(255, 255, 255, 0.3);
+}
+
+/* ─── Tailwind v4 theme extension ──────────────────────────────────────── */
+@theme {
+  --color-bg0: var(--t-bg0);
+  --color-panel: var(--t-panel);
+  --color-border: var(--t-border);
+  --color-muted: var(--t-muted);
+  --color-foreground: var(--t-foreground);
+  --color-foreground-secondary: var(--t-foreground-secondary);
+  --color-foreground-weak: var(--t-foreground-weak);
+  --color-surface-hover: var(--t-surface-hover);
+  --color-surface-active: var(--t-surface-active);
+
+  --color-orange: #ff5a1f;
+  --color-orange2: #ff7a2b;
+  --color-green: #22c55e;
+  --color-amber: #f59e0b;
+  --color-red: #ef4444;
+
+  --shadow-soft: var(--t-shadow-soft);
+  --shadow-insetGlow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Smooth theme transitions */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* ─── Custom scrollbar styling ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--t-scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--t-scrollbar-thumb);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--t-scrollbar-thumb-hover);
+}
+
+/* ─── App Bg gradient ─────────────────────────────────────────────────── */
+.app-bg-gradient {
+  background:
+    radial-gradient(1200px 700px at 15% 0%, rgba(255, 90, 31, 1), rgba(255, 90, 31, 0) 60%),
+    radial-gradient(1000px 600px at 85% 15%, rgba(255, 122, 43, 1), rgba(255, 122, 43, 0) 55%);
+  opacity: var(--t-orb-opacity);
+}
+
+
+/* ─── Reusable UI building blocks ─────────────────────────────────────── */
+@layer components {
+  /* Card wrapper — glassmorphism panel */
+  .card {
+    @apply rounded-2xl border border-border bg-surface-hover p-6 shadow-soft backdrop-blur-xl;
+  }
+
+  /* Buttons — shared base */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+           text-sm font-semibold transition-colors
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+    ring-offset-color: var(--t-ring-offset);
+  }
+  .btn-primary {
+    @apply bg-orange text-white hover:bg-orange2
+           focus:ring-orange;
+  }
+  .btn-secondary {
+    @apply border border-border bg-surface-hover text-foreground
+           hover:bg-surface-active
+           focus:ring-foreground-weak;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-muted hover:bg-surface-hover
+           focus:ring-foreground-weak;
+  }
+  .btn-danger {
+    @apply bg-red text-white hover:bg-red/80
+           focus:ring-red;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply w-full rounded-xl border border-border bg-surface-hover px-3 py-2.5
+           text-sm text-foreground backdrop-blur-xl
+           focus:border-orange/50 focus:outline-none focus:ring-1 focus:ring-orange/50;
+    &::placeholder {
+      color: var(--t-placeholder);
+    }
+  }
+
+  /* Status badges / pills */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5
+           text-xs font-medium;
+  }
+  .badge-success {
+    @apply bg-green/15 text-green border border-green/25;
+  }
+  .badge-warning {
+    @apply bg-amber/15 text-amber border border-amber/25;
+  }
+  .badge-danger {
+    @apply bg-red/15 text-red border border-red/25;
+  }
+  .badge-neutral {
+    @apply bg-surface-hover text-muted border border-border;
+  }
+}

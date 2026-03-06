@@ -1,0 +1,12 @@
+{
+  "name": "aspnet-angular-dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Portfolio v2 — ASP.NET Core + Angular",
+  "scripts": {
+    "start": "cd ClientApp && npm start",
+    "build": "cd ClientApp && npm run build",
+    "test": "cd ClientApp && npm test",
+    "install:client": "cd ClientApp && npm install"
+  }
+}
